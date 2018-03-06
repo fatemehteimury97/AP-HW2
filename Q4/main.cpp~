@@ -1,0 +1,61 @@
+#include<iostream>
+#include<cmath>
+
+void swap(double, double);
+void selection_sort(double arr[] ,int n );
+void printArray(double arr[] , int n );
+
+int main(){
+  double arr1[1000];
+  int n{};
+  double num{};
+  std::cout <<"enter the elements of your array to sort , at the end please enter zero to finish this step" << std::endl;
+  while(true){
+    std::cin >> num;
+    if(num==0)
+      break;
+    else{
+    arr1[n]= num;
+    n++;
+    }
+  }
+  double* arr{new double(n)};
+ 
+  for (int j{} ; j< n  ; j++){
+      arr[j] = arr1[j];
+  }
+  selection_sort(arr, n);
+  std::cout <<" sorted array is:" << std::endl;
+  printArray(arr , n);
+  
+  return 0;
+} 
+
+void swap(double *x  , double *y){
+  double temp {};
+  temp = *x;
+  *x = *y;
+  *y = temp;
+}
+void selection_sort(double arr[] ,int n ){
+  int i, j, min_index;
+  for (i = 0; i < n-1; i++){
+      min_index= i;
+      for (j = i+1; j < n; j++)
+          if (arr[j] < arr[min_index])
+min_index = j;
+
+// Swap the found minimum element with the first element
+swap( &arr[min_index], &arr[i]);
+     
+  }
+}
+
+
+void printArray(double arr[], int n )
+{
+int i;
+for (i=0; i < n ; i++)
+  std::cout << arr[i] <<"\n" << std::endl;
+}
+
